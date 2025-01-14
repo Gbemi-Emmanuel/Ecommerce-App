@@ -7,7 +7,7 @@ import RelatedProducts from '../components/relatedProducts';
 const Product = () => {
 
   const {productId} = useParams();
-  const {products, currency} = useContext(ShopContext);
+  const {products, currency, addToCart} = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
@@ -68,7 +68,7 @@ const Product = () => {
                   ))}
                 </div>
             </div>
-            <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+            <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
             <hr  className='mt-8 ms:w-4/5'/>
             <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
                   <p>100% Original product.</p>
@@ -77,7 +77,7 @@ const Product = () => {
             </div>
         </div>
       </div>
-
+ 
       {/* ---------------- DESCRIPTION AND REVIEW SECTION ---------------- */}
       <div className='mt-20'>
           <div className='flex'>
@@ -96,10 +96,10 @@ const Product = () => {
 
       {/* ------------------ DISPLAY RELATED PRODUCTS -------------------- */}
 
-      {/* <RelatedProducts category={productData.category} subCategory={productData.subCategory} /> */}
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
 
     </div>
-  ) : <div className='opacity-0'></div>
+  ) : <div className='opacity-0'></div> 
 }
 
 export default Product
